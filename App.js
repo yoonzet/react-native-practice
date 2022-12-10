@@ -1,7 +1,7 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {Button, StyleSheet, Text} from 'react-native';
 import CategoryScreen from './screens/CategoryScreen';
 import MealDetailScreen from './screens/MealDetailScreen';
 import MealsOverviewScreen from './screens/MealsOverviewScreen';
@@ -31,7 +31,17 @@ const App = () => {
             //   return {title: catId};
             // }}
           />
-          <Stack.Screen name="MealDetail" component={MealDetailScreen} />
+          <Stack.Screen
+            name="MealDetail"
+            component={MealDetailScreen}
+
+            //MealDetailScreen.js에 직접 써줌
+            // options={{
+            //   headerRight: () => {
+            //     return <Button title="Tap Me" />;
+            //   },
+            // }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>
