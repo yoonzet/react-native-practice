@@ -1,12 +1,23 @@
+import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import React from 'react';
-import {Button, StyleSheet, Text} from 'react-native';
 import CategoryScreen from './screens/CategoryScreen';
 import MealDetailScreen from './screens/MealDetailScreen';
 import MealsOverviewScreen from './screens/MealsOverviewScreen';
+import FavoritesScreen from './screens/FavoritesScreen';
 
 const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
+function DrawerNavigator() {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="Categories" component={CategoryScreen} />
+      <Drawer.Screen name="Favorites" component={FavoritesScreen} />
+    </Drawer.Navigator>
+  );
+}
 
 const App = () => {
   return (
@@ -19,12 +30,12 @@ const App = () => {
             contentStyle: {backgroundColor: '#292000'},
           }}>
           <Stack.Screen
-            name="MealsCategories"
-            component={CategoryScreen}
-            options={{title: 'All Categories'}}
+            name="Drawer"
+            component={DrawerNavigator}
+            // options={{title: 'All Categories'}}
           />
           <Stack.Screen
-            name="MealsOverview"
+            name="MealsOverview" //식별자로 쓰임
             component={MealsOverviewScreen}
             // options={({route, navigation}) => {
             //   const catId = route.params.categoryId;
