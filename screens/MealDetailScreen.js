@@ -13,14 +13,16 @@ function MealDetailScreen({route, navigation}) {
   const mealId = route.params.mealId;
   const selectedMeal = MEALS.find(meal => meal.id === mealId);
   const mealIsFavorite = favoriteMealsCtx.ids.includes(mealId);
-  useLayoutEffect(() => {
-    function changeFavoriteStatusHandler() {
-      if (mealIsFavorite) {
-        favoriteMealsCtx.removeFavorite(mealId);
-      } else {
-        favoriteMealsCtx.addFavorite(mealId);
-      }
+
+  function changeFavoriteStatusHandler() {
+    if (mealIsFavorite) {
+      favoriteMealsCtx.removeFavorite(mealId);
+    } else {
+      favoriteMealsCtx.addFavorite(mealId);
     }
+  }
+
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
         return (
@@ -32,7 +34,7 @@ function MealDetailScreen({route, navigation}) {
         );
       },
     });
-  }, [navigation]);
+  }, [navigation, changeFavoriteStatusHandler]);
 
   return (
     <SafeAreaView>
